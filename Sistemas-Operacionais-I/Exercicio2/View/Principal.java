@@ -7,10 +7,8 @@ import Controller.Controle;
 public class Principal {
 	public static void main(String[] args) {
 		Controle c = new Controle();
-		
-		String os = c.Sistema();
-		
-		c.leProcessos(os);
+				
+		c.leProcessos(c.Sistema());
 		
 		int opc = 0;
 		
@@ -20,15 +18,15 @@ public class Principal {
 			
 			switch (opc) {
 			case 1:
-				c.leProcessos(os);
+				c.leProcessos(c.Sistema());
 				break;
 			case 2:
 				int pid = Integer.parseInt(JOptionPane.showInputDialog("PID"));
-				c.killpid(os, pid);
+				c.killpid(c.Sistema(), pid);
 				break;
 			case 3:
 				String nome = JOptionPane.showInputDialog("Nome do processo");
-				c.killim(os, nome);
+				c.killim(c.Sistema(), nome);
 				break;
 			case 9:
 				JOptionPane.showMessageDialog(null, "Fim!");
