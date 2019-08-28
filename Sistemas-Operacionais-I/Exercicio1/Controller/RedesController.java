@@ -52,7 +52,6 @@ public class RedesController {
 				fluxo.close();
 				
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}	
 		return adaptadores;
@@ -61,12 +60,10 @@ public class RedesController {
 	public void ping (String os) {
 		String comando = "", com = "";
 		if (os.contains("Windows")) {
-			comando = "ping -t www.google.com.br";
-			com="o=";
+			comando = "ping www.google.com.br -n 10";
 		}
 		if (os.contains("Linux")) {
-			comando = "ping www.google.com.br";
-			com="e=";
+			comando = "ping www.google.com.br -c 10";
 		}
 		try {
 			Process p = Runtime.getRuntime().exec(comando);
@@ -74,25 +71,25 @@ public class RedesController {
 			InputStreamReader leitor = new InputStreamReader(fluxo);
 			BufferedReader buffer = new BufferedReader(leitor);
 			String linha = buffer.readLine();
-			double ac = 0;
-			
-			linha = buffer.readLine();
-			
-			for(int i=0;i<10;i++){
+						
+			while(linha!=null) {
+				if (os.contains("Windows")&&linha.contains("dia")) {
+					String[] aux = linha.split(",");
+					System.out.println(aux[2]);
+				}
+				if (os.contains("Linux")&&linha.contains("rtt")) {
+					String[] aux = linha.split("/");
+					System.out.println(aux[4]+"ms");
+				}
 				linha = buffer.readLine();
-				int pri = linha.lastIndexOf(com);
-				int ult = linha.lastIndexOf("m");
-				linha = linha.substring(pri+2,ult);
-				ac+= Double.parseDouble(linha);
 			}
 			
-			System.out.println("Ping com www.google.com.br: "+ac/10+" ms");
-			
+			fluxo.close();
+			leitor.close();
+			buffer.close();
+			 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-			
-	
+		}	
 	}
 }
