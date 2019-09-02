@@ -14,7 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Color;
 
-public class Principal3 extends JFrame {
+public class Principal extends JFrame {
 
 	/**
 	 * 
@@ -29,7 +29,7 @@ public class Principal3 extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Principal3 frame = new Principal3();
+					Principal frame = new Principal();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,7 +41,7 @@ public class Principal3 extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Principal3() {
+	public Principal() {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 635, 459);
