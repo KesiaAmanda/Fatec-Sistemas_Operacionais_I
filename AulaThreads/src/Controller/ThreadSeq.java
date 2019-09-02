@@ -18,7 +18,7 @@ public class ThreadSeq extends Thread {
 		for(double i= 1 ; i <= n ; i++) {
 			if(i%2!=0) {
 				um*=-1;
-				res+=((1*um)/i);
+				res+=(um/i);
 			}
 		}
 		res=4*res;
