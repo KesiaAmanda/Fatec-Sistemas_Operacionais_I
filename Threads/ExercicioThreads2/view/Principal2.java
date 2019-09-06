@@ -1,6 +1,6 @@
 package view;
 
-import controller.SomaVet;
+import controller.SomaMat;
 
 public class Principal2 {
 	public static void main(String[] args) {
@@ -11,15 +11,10 @@ public class Principal2 {
 			}
 		}
 		
-		for(int i=0;i<3;i++) {
-			int vet[] = new int[5];
-			for(int c=0;c<5;c++) {
-				vet[c] = mat[i][c];
-			}
-			
-			Thread p = new SomaVet(i,vet);
-			p.start();
-		}
 		
+		for (int i=0;i<3;i++) {
+			Thread p = new SomaMat(i,mat);
+			p.start();
+		}		
 	}
 }
