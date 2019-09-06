@@ -36,13 +36,13 @@ public class ThreadSapo extends Thread{
 		Rectangle posicao;
 		posicao = sapo.getBounds();
 		while (posicao.x < 500) {
-			posicao.x = posicao.x + (int)(Math.random()*7);
+			posicao.x = posicao.x + (int)(Math.random()*7)+1;
 			if (posicao.x>500) {
 				posicao.x = 500;
 			}
 			sapo.setBounds(posicao);
 			try {
-				Thread.sleep((int)(Math.random()*100)+50);
+				Thread.sleep(100);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -50,7 +50,7 @@ public class ThreadSapo extends Thread{
 		sapoVencedor();
 	}
 	
-	public void sapoVencedor() {
+	public synchronized void sapoVencedor() {
 		if (ven==1) {
 			ven++;
 			try {

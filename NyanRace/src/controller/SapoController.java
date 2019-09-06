@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 public class SapoController implements ActionListener{
 	private JLabel sapo1, sapo2, sapo3, sapo4, sapo5, label;
 	private JButton btnStart;
-	private int loc = 10;
+	private int loc;
 	
 	public SapoController(JLabel sapo1, JLabel sapo2, JLabel sapo3, JLabel sapo4, JLabel sapo5, JButton btnStart, JLabel label) {
 		this.sapo1=sapo1;
@@ -44,9 +44,5 @@ public class SapoController implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		BotaoSapo();
-	}
-	
-	public void teste (Thread a) {
-		
 	}
 }
