@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.Image;
 import java.awt.Rectangle;
+import java.util.concurrent.Semaphore;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -13,17 +14,27 @@ public class ThreadSapo extends Thread{
 	private JLabel sapo, label;
 	private JButton btnStart;
 	private int loc;
+	Semaphore semap;
 	
-	public ThreadSapo(JLabel sapo, int loc, JButton btnStart, JLabel label) {
+	public ThreadSapo(JLabel sapo, int loc, JButton btnStart, JLabel label, Semaphore semap) {
 		this.sapo = sapo;
 		this.btnStart = btnStart;
 		this.loc = loc;
 		this.label = label;
+		this.semap = semap;
 	}
 	
 	@Override
 	public void run() {
 		mexeSapo();
+		try {
+			semap.acquire();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}finally{
+			sapoVencedor();
+			semap.release();
+		}
 	}
 	
 	public void mexeSapo() {
@@ -47,40 +58,19 @@ public class ThreadSapo extends Thread{
 				e.printStackTrace();
 			}
 		}
-		sapoVencedor();
 	}
 	
-	public synchronized void sapoVencedor() {
+	public void sapoVencedor() {
 		if (ven==1) {
 			ven++;
-			try {
-				Thread.sleep(700*6);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
 			sapo.setBounds(262, 196, 127, 73);
 		}else if (ven==2) {
 			ven++;
-			try {
-				Thread.sleep(700*5);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
 			sapo.setBounds(116, 236, 127, 73);
 		}else if (ven==3) {
 			ven++;
-			try {
-				Thread.sleep(700*4);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
 			sapo.setBounds(418, 277, 127, 73);
 		}else{
-			try {
-				Thread.sleep(700*3);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
 			sapo.setVisible(false);
 		}
 		Image bg1 = new ImageIcon(this.getClass().getResource("/bg2.png")).getImage();

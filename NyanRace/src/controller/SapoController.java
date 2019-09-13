@@ -3,6 +3,8 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.concurrent.Semaphore;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
@@ -22,16 +24,17 @@ public class SapoController implements ActionListener{
 	}
 
 	public void BotaoSapo() {
+		Semaphore semap = new Semaphore(1);
 		loc=10;
-		Thread a = new ThreadSapo(sapo1, loc, btnStart, label);
+		Thread a = new ThreadSapo(sapo1, loc, btnStart, label, semap);
 		loc+=55;
-		Thread b = new ThreadSapo(sapo2, loc, btnStart, label);
+		Thread b = new ThreadSapo(sapo2, loc, btnStart, label, semap);
 		loc+=55;
-		Thread c = new ThreadSapo(sapo3, loc, btnStart, label);
+		Thread c = new ThreadSapo(sapo3, loc, btnStart, label, semap);
 		loc+=55;
-		Thread d = new ThreadSapo(sapo4, loc, btnStart, label);
+		Thread d = new ThreadSapo(sapo4, loc, btnStart, label, semap);
 		loc+=55;
-		Thread e = new ThreadSapo(sapo5, loc, btnStart, label);
+		Thread e = new ThreadSapo(sapo5, loc, btnStart, label, semap);
 		a.start();
 		b.start();
 		c.start();
