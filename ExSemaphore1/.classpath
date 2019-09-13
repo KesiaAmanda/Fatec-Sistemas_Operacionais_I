@@ -6,8 +6,5 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="Exercicio1"/>
-	<classpathentry kind="src" path="Exercicio2"/>
-	<classpathentry kind="src" path="Exercicio3"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
