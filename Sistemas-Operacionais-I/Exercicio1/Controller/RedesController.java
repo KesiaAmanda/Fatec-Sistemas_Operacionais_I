@@ -58,7 +58,7 @@ public class RedesController {
 	}
 	
 	public void ping (String os) {
-		String comando = "", com = "";
+		String comando = "";
 		if (os.contains("Windows")) {
 			comando = "ping www.google.com.br -n 10";
 		}
