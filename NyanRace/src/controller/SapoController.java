@@ -39,8 +39,6 @@ public class SapoController implements ActionListener{
 		e.start();
 	}
 	 
-	
-	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		BotaoSapo();
